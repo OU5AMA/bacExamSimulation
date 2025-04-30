@@ -1,0 +1,17 @@
+spring.application.name=BacSimulationExam
+spring:
+  url:jdbc:postgresql://localhost:5432/bac_exam_db
+  username: postgres
+  password: password
+  driver-class-name: org.postgresql.Driver
+jpa:
+  hibernate:
+    ddl-auto: update  # Creates/updates tables automatically
+  show-sql: true  # Logs SQL quesries (helpful for debugging)
+  properties:
+    hibernate:
+      format_sql: true
+#app:
+#  jwt:
+#    secret: your-strong-secret-key-here
+#    expiration: 86400000 #24h in ms
