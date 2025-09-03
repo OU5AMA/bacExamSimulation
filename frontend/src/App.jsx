@@ -1,12 +1,15 @@
+import { Route, Router, Routes } from "react-router-dom";
 import "./App.css";
 
 function App() {
   return (
-    <>
-      <h2 class="text-3xl font-bold text-blue-600 underline">
-        Tailwind CSS is working! 🎉
-      </h2>
-    </>
+   <Router>
+    <Routes>
+      <Route path="/" element={<div>Home</div>} />
+      <Route path="/login" element={<div>Login</div>} />
+      <Route path="/signup" element={<div>Signup</div>} />
+    </Routes>
+   </Router>
   );
 }
 
