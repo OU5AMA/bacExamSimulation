@@ -30,6 +30,7 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+        <!--        Spring Boot Starter         -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -56,6 +57,7 @@
 			<artifactId>jjwt-api</artifactId>
 			<version>0.11.5</version>
 		</dependency>
+        <!--        JWT         -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-impl</artifactId>
@@ -69,21 +71,21 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+        <!--        Database        -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+        <!--    Lombok          -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+
+        <!--        Testing         -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
