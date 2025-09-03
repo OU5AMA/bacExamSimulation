@@ -1,7 +1,7 @@
 // src/pages/Login.jsx
 import { useState } from "react";
-import { login } from "../services/authService";
-import { setToken } from "../utils/auth";
+import { login } from "../services/AuthService.js"
+import { setToken } from "../utils/auth.js";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -14,7 +14,6 @@ export default function Login() {
       const data = await login({ email, password });
       setToken(data.token);
       alert("Login successful!");
-      // Redirect to dashboard based on role if needed
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     }

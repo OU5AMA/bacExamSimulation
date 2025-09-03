@@ -1,6 +1,6 @@
 // src/pages/Signup.jsx
 import { useState } from "react";
-import { register } from "../services/authService";
+import { register } from "../services/AuthService.js"; // Add .js extension
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -8,14 +8,30 @@ export default function Signup() {
     lastName: "",
     email: "",
     password: "",
+    confirmPassword: "",
     role: "STUDENT", // default role
     phoneNumber: "",
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = async (e) => {
+    e.preventDefault();
+
+    // Password confirmation validation
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match");
+      setSuccess("");
+      return;
+    }
+    try {
+      await register(formData);
+      setSuccess("Account created successfully! You can now log in.");
+      setError("");
+    } catch (err) {
+      setError(err.response?.data?.message || "Registration failed");
+      setSuccess("");
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -75,6 +91,15 @@ export default function Signup() {
           className="w-full mb-4 p-2 border rounded"
           required
         />
+        <input
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          value={formData.confirmPassword}
+          onChange={handleChange}
+          className="w-full mb-4 p-2 border rounded"
+          required
+        />  
         <select
           name="role"
           value={formData.role}
@@ -83,7 +108,6 @@ export default function Signup() {
         >
           <option value="STUDENT">Student</option>
           <option value="TEACHER">Teacher</option>
-          <option value="ADMIN">Admin</option>
         </select>
         {formData.role === "TEACHER" && (
           <input
