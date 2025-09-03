@@ -26,10 +26,10 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(nullable = false)
-    private String lastName;
+    private String firstName;
 
     @Column(nullable = false)
-    private String firstName;
+    private String lastName;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -52,14 +52,14 @@ public class User implements UserDetails {
     private Boolean accountNonLocked = true;
 
     @Column(nullable = false, name = "created_at")
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "update_at")
     private LocalDateTime updatedAt;
 
     @PrePersist
     protected void onCreate(){
-        createAt = LocalDateTime.now();
+        createdAt = LocalDateTime.now();
         updatedAt = LocalDateTime.now();
     }
 
@@ -75,6 +75,10 @@ public class User implements UserDetails {
     }
 
     @Override
+    public String getUsername() {
+        return email;
+    }
+
     public String getUserName(){
         return email;
     }
