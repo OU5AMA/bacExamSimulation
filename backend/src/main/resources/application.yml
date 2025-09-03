@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port; 9090
 
 spring:
   datasource:
@@ -10,7 +10,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: update # Auto-creates tables; use update for persistence across restarts
+      ddl-auto: create-drop # Auto-creates tables; use 'update for persistence across restarts
     show-sql: true
   h2:
     console:
