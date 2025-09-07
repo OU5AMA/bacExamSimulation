@@ -4,6 +4,7 @@ import com.schoolmanagement.backend.Services.UserService;
 import com.schoolmanagement.backend.entity.User;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,18 +19,23 @@ public class UserController {
     // POST /api/v1/users => create a new user
     @PostMapping
     public ResponseEntity<User> createUser(@Valid @RequestBody User user){
-        return userService.createUser(user);
+        User savedUser = userService.saveUser(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
 
     // GET /api/v1/users => List all users
     @GetMapping()
     public ResponseEntity<List<User>> getAllUsers(){
-        return userService.getAllUsers();
+        List<User> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+
     }
 
     // GET /api/v1/users => get user by id
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id){
-        return userService.getUserById(id);
+
+        User selectedUser = userService.getUserById(id);
+        return ResponseEntity.ok(selectedUser);
     }
 }

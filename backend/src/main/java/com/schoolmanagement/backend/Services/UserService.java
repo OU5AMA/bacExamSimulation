@@ -7,11 +7,11 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface UserService {
-    ResponseEntity<User> createUser(@Valid User user);
+    User saveUser(@Valid User user);
 
-    ResponseEntity<List<User>> getAllUsers();
+    List<User> getAllUsers();
 
-    ResponseEntity<User> getUserById(Long id);
+    User getUserById(Long id);
 
 
 }

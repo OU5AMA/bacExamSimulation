@@ -18,21 +18,20 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public ResponseEntity<User> createUser(@Valid User user) {
-        User savedUser = userRepository.save(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+    public User saveUser(User user) {
+        // Any additional business logic or validation can go here
+        return userRepository.save(user);
+    }
+
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
     @Override
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userRepository.findAll();
-        return ResponseEntity.ok(users);
-    }
-
-    @Override
-    public ResponseEntity<User> getUserById(Long id) {
-        Optional<User> user = userRepository.findById(id);
-        return user.map(ResponseEntity::ok)
-                .orElseGet(()-> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("User not found with id: " + id));
     }
 }
